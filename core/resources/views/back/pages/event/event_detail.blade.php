@@ -150,6 +150,11 @@
                                                     <th width="80%">Rp. {{ number_format($event->harga_band) }}</th>
                                                 </tr>
                                                 <tr>
+                                                    <td width="15%">Jasa EO</td>
+                                                    <td width="5%">:</td>
+                                                    <th width="80%">Rp. {{ number_format($event->harga_eo) }}</th>
+                                                </tr>
+                                                <tr>
                                                     <td width="15%">Makanan</td>
                                                     </td>
                                                     <td width="5%">:</td>

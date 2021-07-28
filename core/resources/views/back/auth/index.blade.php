@@ -41,7 +41,7 @@
                                     <div class="text-center">
                                         <center><img src="{{ asset('assets/logo.png') }}" style="width:300px" alt=""></center>
                                         <div class="mt-2"></div>
-                                        <h4 class="h5 text-gray-900 mb-4">Sistem Informasi Manajemen Event Gathering</h4>
+                                        <h4 class="h5 text-gray-900 mb-4">Sistem Informasi Manajemen Event</h4>
                                     </div>
                                     @if (session('fail'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">

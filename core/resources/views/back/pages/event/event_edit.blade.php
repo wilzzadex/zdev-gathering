@@ -40,17 +40,23 @@
                             <label>Tanggal Acara
                                 <span class="text-danger">*</span></label>
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <input type="date" id="date_start" value="{{ $event->tanggal_mulai }}" required name="date_start" class="form-control">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="time" class="form-control" name="jam_mulai" value="{{ $event->jam_mulai }}">
                                 </div>
                                 <div class="col-md-2 text-center">
                                     s/d
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-3">
                                     <input type="date" id="date_end" value="{{ $event->tanggal_selesai }}" required name="date_end" class="form-control">
                                 </div>
+                                <div class="col-md-2">
+                                    <input type="time" class="form-control" name="jam_akhir" value="{{ $event->jam_selesai }}">
+                                </div>
                             </div>
-                            <input type="hidden" id="total_hari" value="{{ $event->total_hari }}" name="total_hari">
+                            <input type="hidden" id="total_hari" name="total_hari" value="{{ $event->total_hari }}">
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6">
@@ -70,6 +76,19 @@
                                     <span class="text-danger">*</span></label>
                                 <input type="text" required id="total_biaya_sewa" value="{{ number_format($event->biaya_tempat,0,',','.') }}" name="sewa_tempat" class="form-control"
                                     value="0" readonly>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Rundown Acara
+                                    <span class="text-danger">*</span></label>
+                                <textarea name="rundown_acara" class="form-control" cols="30" rows="7">{{ $event->rundown }}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label>File Pendukung (klik jika ingin mengganti file)
+                                    {{-- <span class="text-danger">*</span></label> --}}
+                                <input type="file" name="file_pendukung" class="form-control" accept=".pdf">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -103,6 +122,34 @@
                                 <input type="text" class="form-control" value="{{ number_format($event->harga_band,0,',','.') }}" id="band_harga" value="0"
                                     onkeyup="hitungTotal(this)" required name="band_harga"
                                     placeholder="Harga Untuk Band/musik..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Undian
+                                    <span class="text-danger">*</span></label>
+                                <textarea name="undian" class="form-control" cols="30" rows="4">{{ $event->undian }}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Harga
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="harga_undian" value="{{ number_format($event->harga_undian,0,',','.') }}"
+                                    onkeyup="hitungTotal(this)" required name="harga_undian"
+                                    placeholder="Harga Untuk Undian..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Jasa EO
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" name="eo" value="{{ $event->eo }}" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Harga
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="harga_eo" value="{{ number_format($event->harga_eo,0,',','.') }}"
+                                    onkeyup="hitungTotal(this)" required name="harga_eo"
+                                    placeholder="Harga Untuk Undian..." />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -165,37 +212,6 @@
 
                         </div>
                         <br>
-                        {{-- <div class="form-group">
-                            <label for="">Gambar Layout</label>
-                            <table class="table">
-
-                                <tbody id="gambar">
-                                    <tr id="img_0">
-                                        <td class="validate">
-                                            <label class="btn btn-raised btn-default btn-sm"
-                                                style="color: white; width: 180px; background:grey; height: 30px;"> <i
-                                                    class="fa fa-picture-o"></i> Pilih Gambar<input required type="file"
-                                                    name="layout[]" accept="image/*" style="opacity: 0;"
-                                                    onchange="hasilgmbr(this)"></label>
-                                            <span class="label-gmbr" style="margin-left: 2%;"> Belum Ada Gambar</span>
-
-                                        </td>
-                                        <td><button type="button" class="btn btn-danger btn-sm" onclick="removeGambar(0)"><i
-                                                    class="fa fa-trash"></i></button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-secondary btn-sm" id="tambah-gambar"
-                                onclick="addGambar()">Tambah Gambar</button><br>
-                            <label class="recommendation" style="margin-top: 20px;">
-                                Keterangan:<br>
-                                <ul>
-                                    <li>Rekomendasi Ukuran Gambar: 200x350 pixel</li>
-                                    <li>Ukuran File Image Maksimal: 5 Mb</li>
-                                    <li>Format Gambar : jpg,jpeg,png</li>
-                                </ul>
-                            </label>
-                        </div> --}}
 
                         <button type="submit" class="btn btn-primary mr-2">Simpan</button>
 
@@ -235,6 +251,9 @@
                 reverse: true
             });
             $('#makanan_harga').mask('000.000.000', {
+                reverse: true
+            });
+            $('#harga_eo').mask('000.000.000', {
                 reverse: true
             });
         })
@@ -288,12 +307,16 @@
                 mc_harga_fix = mc_harga.replace(/\./g, "");
             let band_harga = $('#band_harga').val(),
                 band_harga_fix = band_harga.replace(/\./g, "");
+            let harga_undian = $('#harga_undian').val(),
+                harga_undian_fix = harga_undian.replace(/\./g, "");
             let makanan_harga = $('#makanan_harga').val(),
                 makanan_harga_fix = makanan_harga.replace(/\./g, "");
             let jml_porsi = $('#jml_porsi').val(),
                 jml_porsi_fix = jml_porsi.replace(/\./g, "");
+            let harga_eo = $('#harga_eo').val(),
+                harga_eo_fix = harga_eo.replace(/\./g, "");
 
-            let total_1 = Number(sewa_tempat_fix) + Number(mc_harga_fix) + Number(band_harga_fix);
+            let total_1 = Number(sewa_tempat_fix) + Number(mc_harga_fix) + Number(band_harga_fix) + Number(harga_undian_fix) + Number(harga_eo_fix);
 
             let total_2 = Number(makanan_harga_fix) * Number(jml_porsi_fix);
 

@@ -137,6 +137,24 @@
                                     placeholder="Harga Untuk Undian..." />
                             </div>
                         </div>
+
+                        {{-- ini baru yaaaa --}}
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label>Jasa EO
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" name="eo" placeholder="Jasa Eo..." class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label>Harga
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="harga_eo" value="0"
+                                    onkeyup="hitungTotal(this)" required name="harga_eo"
+                                    placeholder="Harga Untuk EO..." />
+                            </div>
+                        </div>
+
+
                         <div class="form-group row">
                             <div class="col-md-4">
                                 <label>Harga Makanan/porsi
@@ -265,6 +283,9 @@
             $('#harga_undian').mask('000.000.000', {
                 reverse: true
             });
+            $('#harga_eo').mask('000.000.000', {
+                reverse: true
+            });
         })
 
         @if (session('success'))
@@ -322,8 +343,10 @@
                 makanan_harga_fix = makanan_harga.replace(/\./g, "");
             let jml_porsi = $('#jml_porsi').val(),
                 jml_porsi_fix = jml_porsi.replace(/\./g, "");
+            let harga_eo = $('#harga_eo').val(),
+                harga_eo_fix = harga_eo.replace(/\./g, "");
 
-            let total_1 = Number(sewa_tempat_fix) + Number(mc_harga_fix) + Number(band_harga_fix) + Number(harga_undian_fix);
+            let total_1 = Number(sewa_tempat_fix) + Number(mc_harga_fix) + Number(band_harga_fix) + Number(harga_undian_fix) + Number(harga_eo_fix);
 
             let total_2 = Number(makanan_harga_fix) * Number(jml_porsi_fix);
 

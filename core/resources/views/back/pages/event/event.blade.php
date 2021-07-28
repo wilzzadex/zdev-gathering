@@ -65,22 +65,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                {{-- @foreach ($user as $key => $item)
-                                <tr>
-                                    <td>{{ $key+1 }}</td>
-                                    <td>{{ $item->username }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ ucfirst($item->role) }}</td>
-                                    <td>
-                                        <a href="{{ route('user.edit',$item->id) }}" class="btn btn-warning btn-circle btn-sm">
-                                            <i class="fas fa-fw fa-edit"></i>
-                                        </a>
-                                        <button type="button" onclick="deleteUser(this)" id="{{ $item->id }}" class="btn btn-danger btn-circle btn-sm">
-                                            <i class="fas fa-fw fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach --}}
                             </tbody>
                         </table>
                     </div>

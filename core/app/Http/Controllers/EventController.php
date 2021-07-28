@@ -70,6 +70,8 @@ class EventController extends Controller
         $event->harga_band = str_replace(".", "", $request->band_harga);
         $event->makanan_per_porsi = str_replace(".", "", $request->makanan_per);
         $event->jml_porsi = str_replace(".", "", $request->jml_porsi);
+        $event->eo = $request->eo;
+        $event->harga_eo = str_replace(".", "", $request->harga_eo);
         $event->biaya_makanan = str_replace(".", "", $request->total_makanan);
         $event->total_budget = str_replace(".", "", $request->total_budget);
         $event->status = 'menunggu-pembayaran';
@@ -143,6 +145,7 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $event = Event::findOrFail($id);
         $event->nama_klien = $request->nama;
         $event->tanggal_mulai = $request->date_start;
@@ -151,11 +154,18 @@ class EventController extends Controller
         $event->biaya_tempat = str_replace(".", "", $request->sewa_tempat);
         $event->lokasi_id = $request->lokasi_id;
         $event->mc = $request->mc;
+        $event->jam_mulai = $request->jam_mulai;
+        $event->jam_selesai = $request->jam_akhir;
+        $event->rundown = $request->rundown_acara;
+        $event->undian = $request->undian;
+        $event->harga_undian = str_replace(".", "", $request->harga_undian);
         $event->harga_mc = str_replace(".", "", $request->mc_harga);
         $event->band = $request->band;
         $event->harga_band = str_replace(".", "", $request->band_harga);
         $event->makanan_per_porsi = str_replace(".", "", $request->makanan_per);
         $event->jml_porsi = str_replace(".", "", $request->jml_porsi);
+        $event->eo = $request->eo;
+        $event->harga_eo = str_replace(".", "", $request->harga_eo);
         $event->biaya_makanan = str_replace(".", "", $request->total_makanan);
         $event->total_budget = str_replace(".", "", $request->total_budget);
         $event->status = $request->status;
