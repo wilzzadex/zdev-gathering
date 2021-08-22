@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data['user'] = User::where('role','Admin')->orderBy('name', 'asc')->get();
+        $data['user'] = User::whereIn('role',['pimpinan','admin'])->orderBy('name', 'asc')->get();
         return view('back.pages.user.user', $data);
     }
 

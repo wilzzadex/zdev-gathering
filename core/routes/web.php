@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('cache:clear');
 });
 
@@ -40,13 +40,7 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin']], function () {
 
 Route::group(['middleware' => ['auth', 'checkRole:superadmin,Admin']], function () {
     Route::prefix('admin')->group(function () {
-        Route::prefix('dashboard')->group(function () {
-            Route::get('/', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
-        });
-        Route::prefix('kalender')->group(function () {
-            Route::get('/', ['as' => 'kalender', 'uses' => 'DashboardController@kalender']);
-            Route::get('getEvent', ['as' => 'getEvent', 'uses' => 'DashboardController@getEvent']);
-        });
+
 
         Route::prefix('master-data')->group(function () {
             Route::prefix('lokasi')->group(function () {
@@ -68,11 +62,22 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,Admin']], function 
             Route::post('store', ['as' => 'event.store', 'uses' => 'EventController@store']);
             Route::post('update/{id}', ['as' => 'event.update', 'uses' => 'EventController@update']);
         });
+    });
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:superadmin,pimpinan,Admin']], function () {
+    Route::prefix('admin')->group(function () {
+        Route::prefix('dashboard')->group(function () {
+            Route::get('/', ['as' => 'dashboard.index', 'uses' => 'DashboardController@index']);
+        });
+        Route::prefix('kalender')->group(function () {
+            Route::get('/', ['as' => 'kalender', 'uses' => 'DashboardController@kalender']);
+            Route::get('getEvent', ['as' => 'getEvent', 'uses' => 'DashboardController@getEvent']);
+        });
 
         Route::prefix('laporan')->group(function () {
             Route::get('/', ['as' => 'laporan', 'uses' => 'EventController@laporan']);
             Route::get('cetak', ['as' => 'laporan.cetak', 'uses' => 'EventController@laporanCetak']);
         });
-
     });
 });

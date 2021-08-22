@@ -50,12 +50,12 @@
     <table border="0" style="width: 100%;margin-top:20px">
         <tr>
             <td style="width: 70%">
-                <h5><b>Nama Aplikasinya</b></h5>
+                <h5><b>Alpha Production</b></h5>
             </td>
-            <td rowspan="2" class="text-right"><img width="25%" src="{{ url('assets/glu.png') }}" alt=""></td>
+            <td rowspan="2" class="text-right"><img width="25%" src="{{ url('assets/logo.png') }}" alt=""></td>
         </tr>
         <tr>
-            <td><span>alamatnya nanti disini</span></td>
+            <td><span>Jl. Satrugna, Arjuna, Kec. Cicendo, Kota Bandung, Jawa Barat 40172</span></td>
         </tr>
     </table>
     <hr>
@@ -101,6 +101,33 @@
             <td colspan="3"><b> Grand Total </b></td>
             <td colspan="2" class="text-center"><b>Rp.  {{ number_format($gt) }} </b></td>
         </tr> --}}
+    </table>
+    <br>
+    <br>
+
+    <table style="width: 100%" border="0">
+        <tr>
+            <td style="width: 60%"></td>
+            <td class="text-center" colspan="2">{{ date('d - m - Y') }}</td>
+        </tr>
+        <tr>
+            <td style="width: 60%"></td>
+            <td class="text-center">Tertanda Tangan</td>
+            <td class="text-center">Tertanda Tangan</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td><br></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="width: 60%"></td>
+            <td class="text-center">Admin</td>
+            <td class="text-center">Direktur Utama</td>
+        </tr>
     </table>
 </body>
 
